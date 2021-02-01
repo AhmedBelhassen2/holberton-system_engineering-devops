@@ -1,2 +1,2 @@
 #!/bin/bash
-echo 'Guvf vf n Grfg' | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+cat rot.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
