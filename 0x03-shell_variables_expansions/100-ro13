@@ -1,3 +1,2 @@
 #!/bin/bash
-echo test | tr 'A-Za-z0-9' 'N-ZA-Mn-za-m5-90-4'
-
+echo 'Guvf vf n Grfg' | tr 'A-Za-z' 'N-ZA-Mn-za-m'
