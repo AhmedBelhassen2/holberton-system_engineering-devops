@@ -1,2 +1,2 @@
 #!/bin/bash
-cat rot.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+echo 'Rirelbar vf n cebcbarag bs fgebat rapelcgvba.' | tr 'A-Za-z' 'N-ZA-Mn-za-m'
