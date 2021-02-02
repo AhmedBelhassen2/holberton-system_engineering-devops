@@ -1,2 +1,2 @@
 #!/bin/bash
-echo 'Rirelbar vf n cebcbarag bs fgebat rapelcgvba.' | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+ tr 'A-Za-z' 'N-ZA-Mn-za-m'
