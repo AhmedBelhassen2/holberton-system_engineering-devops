@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Write a Bash script that displays Holberton School 10 times.
+# Write a Bash script that displays Holberton School 10 times.
 for _ in {0..10}
 do
     echo "Holberton School"
