@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Using your previous exercise command, write a Bash script that displays lines
+# shellcheck disable=SC2009
+ps auxf | grep bash
