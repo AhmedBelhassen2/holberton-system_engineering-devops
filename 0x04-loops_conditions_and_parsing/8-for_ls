@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Write a Bash script that displays ls
+ls=$(ls)
+for i in $ls
+do
+    echo "$i" | cut -d- -f2
+done
