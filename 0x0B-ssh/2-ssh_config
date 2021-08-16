@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Your Ubuntu Vagrant machine has an SSH configuration file for the local SSH
+ssh-add -k ~/.ssh/holberton
