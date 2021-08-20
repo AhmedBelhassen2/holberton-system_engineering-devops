@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 # install nginx and change the default page
-apt -y update
-apt install -y nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
 sudo service nginx start
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
-sed -i '/server_name _/a location /redirect_me { rewrite ^ https://www.youtube.com/watch?v=QH2-TGUlw\u4? permanent; }' /etc/nginx/sites-available/default
-sed -i '/server_name _/a error_page 404 /404.html; location = /404.html {root /var/www/html/; internal; }' /etc/nginx/sites-available/default
 new_config="\\\n\terror_page 404 /custom_404.html;\n"
-service nginx restart
 file="/etc/nginx/sites-enabled/default"
 sudo sed -i "43i $new_config" $file
+sudo service nginx restart
