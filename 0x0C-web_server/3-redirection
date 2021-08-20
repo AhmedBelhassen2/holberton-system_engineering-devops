@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 # Script that installs Nginx and configure it
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "Holberton School" | sudo tee /var/www/html/index.nginx-debian.html
-sudo service nginx start
-new="location /redirect_me {\n \treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
-sudo sed -i "26i $new" /etc/nginx/sites-available/default
-sudo service nginx restart
-sudo service nginx reload
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo 'Holberton School' > /var/www/html/index.nginx-debian.html
+sed -i '/listen 80 default_server;/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+service nginx start
