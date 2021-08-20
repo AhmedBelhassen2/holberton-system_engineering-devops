@@ -4,6 +4,5 @@ apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 echo 'Holberton School' > /var/www/html/index.nginx-debian.html
-sed -i "/server_name _;/ a \\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
 service nginx start
 new="location /redirect_me {\n \treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
