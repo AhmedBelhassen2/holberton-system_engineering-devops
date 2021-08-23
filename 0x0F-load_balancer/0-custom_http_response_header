@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 # install nginx and change the default page
-my_config="a \\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}\n\tadd_header X-Served-By \"\$HOSTNAME\";"
-
-apt-get update -y
-apt-get install nginx -y
-echo "Holberton School" > /var/www/html/index.html
-sed -i "/server_name _;/$my_config" /etc/nginx/sites-available/default
-service nginx restart
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+sudo echo "Holberton School" > /var/www/html/index.nginx-debian.html
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+sudo echo "Ceci n'est pas une page" > /usr/share/nginx/html/custom_404.html
+sudo sed -i '/listen 80 default_server/a error_page 404 /custom_404.html; location = /custom_404.html {root /usr/share/nginx/html; internal;}' /etc/nginx/sites-available/default
+sudo sed -i "/http {/a add_header X-Served-By ${HOSTNAME};" /etc/nginx/nginx.conf
+sudo service nginx reload
+sudo service nginx start
