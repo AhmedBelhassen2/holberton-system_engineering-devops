@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # install nginx and change the default page
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo service nginx start
+my_config="a \\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}\n\tadd_header X-Served-By \"\$HOSTNAME\";"
+
+apt-get update -y
+apt-get install nginx -y
 echo "Holberton School" > /var/www/html/index.html
-file="/etc/nginx/sites-enabled/default"
-sudo sed -i "43i $new_config" $file
-sudo service nginx restart
+sed -i "/server_name _;/$my_config" /etc/nginx/sites-available/default
+service nginx restart
