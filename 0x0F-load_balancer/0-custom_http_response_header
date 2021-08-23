@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# install nginx and change the default page
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo service nginx start
+echo "Holberton School" > /var/www/html/index.html
+file="/etc/nginx/sites-enabled/default"
+sudo sed -i "43i $new_config" $file
+sudo service nginx restart
