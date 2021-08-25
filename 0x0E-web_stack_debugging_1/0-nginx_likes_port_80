@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# NGINX configuration
+sudo sed -i "s/sites-enabled/sites-available/" /etc/nginx/nginx.conf
+sudo service nginx reload
+sudo service nginx restart
