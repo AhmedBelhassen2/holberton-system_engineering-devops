@@ -1,26 +1,28 @@
 #!/usr/bin/python3
-""" script to fetch data from an APIs """
-
+""" Python Script """
 import json
 import requests
-import sys
 
 if __name__ == "__main__":
-    todos = requests.get("https://jsonplaceholder.typicode.com/users").json()
-    users = requests.get("https://jsonplaceholder.typicode.com/users").json()
+    u_link = "https://jsonplaceholder.typicode.com/users"
+    file = 'todo_all_employees.json'
 
-    dct2 = {}
-    for j in users:
-        lt1 = []
-        for i in todos:
-            if i.get("userId") == j.get("id"):
-                dct1 = {}
-                dct1["task"] = i.get("title")
-                dct1["completed"] = i.get("completed")
-                dct1["username"] = j.get("username")
-                lt1.append(dct1)
-        dct2[j.get("id")] = lt1
+    u_info = requests.get("{}/".format(u_link)).json()
+    data = dict()
+    for user in u_info:
+        uid = user['id']
+        username = user['username']
+        todo_info = requests.get("{}/{}/todos".format(u_link, uid))
+        users = todo_info.json()
+        data[str(uid)] = list()
+        for todo in users:
+            data[str(uid)].append(
+                {
+                    "username": username,
+                    "task": todo['title'],
+                    "completed": todo['completed']
+                }
+            )
 
-    with open("todo_all_employees.json", 'w') as file:
-        jsonobject = json.dumps(dct2)
-        file.write(jsonobject)
+    with open(file, 'w', newline='') as jsonfile:
+        json.dump(data, jsonfile)
